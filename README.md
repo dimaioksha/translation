@@ -35,3 +35,18 @@ When training/testing our model, we always know how many words are in our target
 
 Once we have our predicted target sentence,  <img src="https://render.githubusercontent.com/render/math?math=\hat{Y} ={\hat{y}_1, \hat{y}_2, ... , \hat{y}_T}">, we compare it against our actual target sentence,  <img src="https://render.githubusercontent.com/render/math?math=Y = {y_1, y_2, ... y_T}">, to calculate our loss. We then use this loss to update all of the parameters in our model.
 
+# Coding
+
+The process is described in my [notebook](https://github.com/DmitryIo/translation/blob/master/translator.ipynb). Follow it and enjoy
+
+# Dataset
+
+The dataset is [here](https://github.com/DmitryIo/translation/blob/master/translation.csv)
+
+# Conclusion
+
+There is an example how it all works:
+
+![](./img_trans/photo_2020-05-30_00-31-02.jpg)
+
+I am going to impove this result, adding `Attention`. This is a very powerful technology and this will be done in next notebook.
