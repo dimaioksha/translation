@@ -15,10 +15,7 @@ I am going to use seq2seq model and the most common of this kind of models is en
 
 The input(source) sentence passes through the encoder, collects hidden states and then goes into decoder model. The first initial hidden state of decoder model is the last hidden state of the encoder model. `<sos>` and `<eos>` tokens mean that the sentence starts and sentence ends. 
 
-Lets say we have 
-<img src="https://render.githubusercontent.com/render/math?math=$X = \\{x_1, x_2, ... x_T\\}$"> 
-
-$X = \\{x_1, x_2 ... x_T\\}$, where $x_1 = `<sos>`, x_2 = guten$ and etc. The initial hidden state, $h_0$, is usually either initialized to zeros or a learned parameter.
+Lets say we have <img src="https://render.githubusercontent.com/render/math?math=$X = \\{x_1, x_2, ... x_T\\}$"> , where <img src="https://render.githubusercontent.com/render/math?math=x_1 ="> `<sos>`, <img src="https://render.githubusercontent.com/render/math?math=x_2 ="> `guten` and etc. The initial hidden state, <img src="https://render.githubusercontent.com/render/math?math=h_0">, is usually either initialized to zeros or a learned parameter.
 
 $X = \\{x_1, x_2, ..., x_T\\}$, where $x_1 = \\text{<sos>}, x_2 = \\text{guten}$, etc. The initial hidden state, $h_0$, is usually either initialized to zeros or a learned parameter.
 
