@@ -21,4 +21,17 @@ Once the final word, <img src="https://render.githubusercontent.com/render/math?
 
 Now we have our context vector, <img src="https://render.githubusercontent.com/render/math?math=z">, we can start decoding it to get the output/target sentence, "good morning". Again, we append start and end of sequence tokens to the target sentence. At each time-step, the input to the decoder RNN (blue) is the embedding, <img src="https://render.githubusercontent.com/render/math?math=d">, of current word, <img src="https://render.githubusercontent.com/render/math?math=d(y_t)">, as well as the hidden state from the previous time-step, <img src="https://render.githubusercontent.com/render/math?math=s_{t-1}">, where the initial decoder hidden state, <img src="https://render.githubusercontent.com/render/math?math=s_0">, is the context vector, <img src="https://render.githubusercontent.com/render/math?math=s_0 = z = h_T">, i.e. the initial decoder hidden state is the final encoder hidden state. Thus, similar to the encoder, we can represent the decoder as:
 
-<img src="https://render.githubusercontent.com/render/math?math=">
+<img src="https://render.githubusercontent.com/render/math?math=s_t = DecoderRNN(d(y_t), s_{t-1})">
+
+Although the input/source embedding layer, <img src="https://render.githubusercontent.com/render/math?math=e">, and the output/target embedding layer, <img src="https://render.githubusercontent.com/render/math?math=d">, are both shown in yellow in the diagram they are two different embedding layers with their own parameters.
+
+In the decoder, we need to go from the hidden state to an actual word, therefore at each time-step we use <img src="https://render.githubusercontent.com/render/math?math=s_t"> to predict (by passing it through a Linear layer, shown in purple) what we think is the next word in the sequence, <img src="https://render.githubusercontent.com/render/math?math=\hat{y}_t">.
+
+<img src="https://render.githubusercontent.com/render/math?math=\hat{y}_t = f(s_t)">
+
+The words in the decoder are always generated one after another, with one per time-step. We always use `<sos>` for the first input to the decoder, <img src="https://render.githubusercontent.com/render/math?math=y_1">, but for subsequent inputs, <img src="https://render.githubusercontent.com/render/math?math=y_{t > 1}">, we will sometimes use the actual, ground truth next word in the sequence,  <img src="https://render.githubusercontent.com/render/math?math=y_t"> and sometimes use the word predicted by our decoder,  <img src="https://render.githubusercontent.com/render/math?math=\hat{y}_{t-1}">. This is called teacher forcing.
+
+When training/testing our model, we always know how many words are in our target sentence, so we stop generating words once we hit that many. During inference it is common to keep generating words until the model outputs an `<eos>` token or after a certain amount of words have been generated.
+
+Once we have our predicted target sentence,  <img src="https://render.githubusercontent.com/render/math?math=\hat{Y} ={\hat{y}_1, \hat{y}_2, ... , \hat{y}_T}">, we compare it against our actual target sentence,  <img src="https://render.githubusercontent.com/render/math?math=Y = {y_1, y_2, ... y_T}">, to calculate our loss. We then use this loss to update all of the parameters in our model.
+
