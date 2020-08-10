@@ -50,3 +50,5 @@ There is an example how it all works:
 ![](./img_trans/photo_2020-05-30_00-31-02.jpg)
 
 I am going to impove this result, adding `Attention`. This is a very powerful technology and this will be done in next notebook.
+
+cred: https://github.com/bentrevett
